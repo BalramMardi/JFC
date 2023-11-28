@@ -141,7 +141,7 @@ const AllPlayers = () => {
                             <div key={p._id} className="players-cards">
                               <div className="players-cards-img">
                                 <img
-                                  src={`${process.env.REACT_APP_API}/api/v1/player/players-photo/${p._id}`}
+                                  src={`api/v1/player/players-photo/${p._id}`}
                                   // src={p.imgsrc}
                                   alt={p.name}
                                 />

@@ -13,9 +13,7 @@ const Threetile = () => {
   //getallNews
   const getAllNews = async () => {
     try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/news/get-news`
-      );
+      const { data } = await axios.get("api/v1/news/get-news");
       setNews(data.news);
     } catch (error) {
       console.log(error);
@@ -53,7 +51,7 @@ const Threetile = () => {
             onClick={() => navigate(`/news/${threeNews[0].slug}`)}
           >
             <img
-              src={`${process.env.REACT_APP_API}/api/v1/news/news-photo/${threeNews[0]._id}`}
+              src={`api/v1/news/news-photo/${threeNews[0]._id}`}
               alt="first"
               className={num === 1 ? "imgscale " : "imgnotscale"}
               onMouseOver={hover1}
@@ -88,7 +86,7 @@ const Threetile = () => {
             onClick={() => navigate(`/news/${threeNews[1].slug}`)}
           >
             <img
-              src={`${process.env.REACT_APP_API}/api/v1/news/news-photo/${threeNews[1]._id}`}
+              src={`api/v1/news/news-photo/${threeNews[1]._id}`}
               alt="middle"
               className={num === 2 ? "imgscale " : "imgnotscale"}
               onMouseOver={hover2}
@@ -124,7 +122,7 @@ const Threetile = () => {
             onClick={() => navigate(`/news/${threeNews[2].slug}`)}
           >
             <img
-              src={`${process.env.REACT_APP_API}/api/v1/news/news-photo/${threeNews[2]._id}`}
+              src={`api/v1/news/news-photo/${threeNews[2]._id}`}
               alt="third"
               className={num === 3 ? "imgscale " : "imgnotscale"}
               onMouseOver={hover3}

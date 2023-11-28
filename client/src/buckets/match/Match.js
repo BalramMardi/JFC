@@ -62,9 +62,7 @@ const Match = () => {
 
   const getAllMatch = async () => {
     try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/match/get-match`
-      );
+      const { data } = await axios.get("api/v1/match/get-match");
       setMatch(data.match);
     } catch (error) {
       console.log(error);
@@ -73,9 +71,7 @@ const Match = () => {
 
   const getAllTeam = async () => {
     try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/teams/get-teams`
-      );
+      const { data } = await axios.get("api/v1/teams/get-teams");
       setTeamData(data.teams);
     } catch (error) {
       console.log(error);
@@ -84,9 +80,7 @@ const Match = () => {
 
   const getAllLeague = async () => {
     try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/league/get-league`
-      );
+      const { data } = await axios.get("api/v1/league/get-league");
       setLeagueData(data.league);
     } catch (error) {
       console.log(error);
@@ -119,7 +113,7 @@ const Match = () => {
             <img
               src={
                 homeTeamfirst
-                  ? `${process.env.REACT_APP_API}/api/v1/teams/teams-photo/${homeTeamfirst._id}`
+                  ? `api/v1/teams/teams-photo/${homeTeamfirst._id}`
                   : null
               }
               alt={homeTeamfirst ? homeTeamfirst.teamname : "Unknown Team"}
@@ -148,7 +142,7 @@ const Match = () => {
             <img
               src={
                 awayTeamfirst
-                  ? `${process.env.REACT_APP_API}/api/v1/teams/teams-photo/${awayTeamfirst._id}`
+                  ? `api/v1/teams/teams-photo/${awayTeamfirst._id}`
                   : null
               }
               alt={awayTeamfirst ? awayTeamfirst.teamname : "Unknown Team"}
@@ -180,7 +174,7 @@ const Match = () => {
             <img
               src={
                 homeTeamMiddle
-                  ? `${process.env.REACT_APP_API}/api/v1/teams/teams-photo/${homeTeamMiddle._id}`
+                  ? `api/v1/teams/teams-photo/${homeTeamMiddle._id}`
                   : null
               }
               alt={homeTeamMiddle ? homeTeamMiddle.teamname : "Unknown Team"}
@@ -214,7 +208,7 @@ const Match = () => {
             <img
               src={
                 awayTeamMiddle
-                  ? `${process.env.REACT_APP_API}/api/v1/teams/teams-photo/${awayTeamMiddle._id}`
+                  ? `api/v1/teams/teams-photo/${awayTeamMiddle._id}`
                   : null
               }
               alt={awayTeamMiddle ? awayTeamMiddle.teamname : "Unknown Team"}
@@ -243,7 +237,7 @@ const Match = () => {
             <img
               src={
                 homeTeamthird
-                  ? `${process.env.REACT_APP_API}/api/v1/teams/teams-photo/${homeTeamthird._id}`
+                  ? `api/v1/teams/teams-photo/${homeTeamthird._id}`
                   : null
               }
               alt={homeTeamthird ? homeTeamthird.teamname : "Unknown Team"}
@@ -273,7 +267,7 @@ const Match = () => {
             <img
               src={
                 awayTeamthird
-                  ? `${process.env.REACT_APP_API}/api/v1/teams/teams-photo/${awayTeamthird._id}`
+                  ? `api/v1/teams/teams-photo/${awayTeamthird._id}`
                   : null
               }
               alt={awayTeamthird ? awayTeamthird.teamname : "Unknown Team"}

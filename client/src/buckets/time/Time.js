@@ -112,9 +112,7 @@ export default function Time() {
 
   const allmatch = async () => {
     try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/match/get-match`
-      );
+      const { data } = await axios.get("api/v1/match/get-match");
       setMatch(data.match);
     } catch (error) {
       console.log(error);
