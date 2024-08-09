@@ -9,7 +9,7 @@ const Info = () => {
     <div className="info-bucket">
       <Matchslate />
       <Tickets />
-      <HomeStore />
+      {/* <HomeStore /> */}
     </div>
   );
 };

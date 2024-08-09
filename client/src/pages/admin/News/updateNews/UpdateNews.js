@@ -1,14 +1,16 @@
 import "./updateNews.css";
 import AdminMenu from "../../../AdminMenu";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import toast from "react-hot-toast";
+import JoditEditor from "jodit-react";
 
 import "./updateNews.css";
 import axios from "axios";
 const UpdateNews = () => {
+  const editor = useRef("");
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [date, setDate] = useState("");
@@ -149,7 +151,7 @@ const UpdateNews = () => {
                     News
                   </label>
                   <div className="mt-2">
-                    <textarea
+                    {/* <textarea
                       id="about"
                       name="about"
                       rows={3}
@@ -157,6 +159,15 @@ const UpdateNews = () => {
                       defaultValue={""}
                       value={desc}
                       onChange={(e) => setDesc(e.target.value)}
+                    /> */}
+
+                    <JoditEditor
+                      ref={editor}
+                      value={desc}
+                      // config={config}
+                      // tabIndex={1}
+                      // onBlur={(newContent) => setDesc(newContent)}
+                      onChange={(newContent) => setDesc(newContent)}
                     />
                   </div>
                   <div className="sm:col-span-4">

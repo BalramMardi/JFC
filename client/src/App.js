@@ -42,6 +42,9 @@ import AllPlayers from "./pages/AllPlayers/AllPlayers";
 
 import Redirect from "./components/routes/Redirect";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
+import TnCpage from "./components/footer/TnCpage";
+import PrivacyPolicy from "./components/footer/PrivacyPolicy";
+import AboutUs from "./components/footer/Aboutus";
 
 function App() {
   return (
@@ -52,6 +55,10 @@ function App() {
       <Toaster />
       <Routes>
         <Route path="/" element={<Wrapper />} />
+        <Route path="/terms-and-conditions" element={<TnCpage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/aboutus" element={<AboutUs />} />
+
         <Route path="/redirect" element={<Redirect />} />
 
         <Route path="/news/:slug" element={<NewsDetails />} />
@@ -144,7 +151,7 @@ function App() {
           <Route path="matches/admin-matches/:slug" element={<UpdateMatch />} />
         </Route>
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

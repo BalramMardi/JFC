@@ -15,5 +15,7 @@
 
 .topbar-container img {
   width: 70%;
+  max-width: 150px;
+  min-width: 100px;
   cursor: pointer;
 }

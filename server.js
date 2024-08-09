@@ -16,20 +16,24 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-//config
+// Config
 dotenv.config();
 
-//database
+// Database connection
 connectDB();
 
 const app = express();
 
-//middleware
+// Middleware
 app.use(cors());
 app.use(express.json());
-app.use(morgan("dev"));
 
-//routes
+// Logging middleware (only in development)
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
+// Routes
 app.use("/api/v1/auth", AuthRoute);
 app.use("/api/v1/player", playerRoute);
 app.use("/api/v1/news", newsRoute);
@@ -37,15 +41,20 @@ app.use("/api/v1/teams", teamsRoute);
 app.use("/api/v1/match", matchRoute);
 app.use("/api/v1/league", leagueRoute);
 
-//static
-app.use(express.static(path.join(__dirname, "./client/build")));
+// Serve static files in production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "./client/build")));
 
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+  app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  });
+}
 
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
-  console.log(`server is running on ${PORT}`.bgCyan.white);
+  console.log(
+    `Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`.bgCyan
+      .white
+  );
 });

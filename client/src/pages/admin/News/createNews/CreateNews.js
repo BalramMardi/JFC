@@ -1,12 +1,14 @@
 import AdminMenu from "../../../AdminMenu";
 import "./createNews.css";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import JoditEditor from "jodit-react";
 
 const CreateNews = () => {
+  const editor = useRef("");
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [date, setDate] = useState("");
@@ -101,7 +103,7 @@ const CreateNews = () => {
                     News
                   </label>
                   <div className="mt-2">
-                    <textarea
+                    {/* <textarea
                       id="about"
                       name="about"
                       rows={3}
@@ -109,6 +111,15 @@ const CreateNews = () => {
                       defaultValue={""}
                       value={desc}
                       onChange={(e) => setDesc(e.target.value)}
+                    /> */}
+
+                    <JoditEditor
+                      ref={editor}
+                      value={desc}
+                      // config={config}
+                      // tabIndex={1}
+                      // onBlur={(newContent) => setDesc(newContent)}
+                      onChange={(newContent) => setDesc(newContent)}
                     />
                   </div>
                   <div className="sm:col-span-4">

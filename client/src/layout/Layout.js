@@ -16,10 +16,10 @@ const Layout = ({ children, title, description, keywords, author }) => {
       </Helmet>
       <Navbar />
       <Topbar />
-      {/* <main style={{ minHeight: "80vh" }}>{children}</main> */}
-      <main>{children}</main>
+      <main style={{ minHeight: "80vh" }}>{children}</main>
+      {/* <main>{children}</main> */}
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

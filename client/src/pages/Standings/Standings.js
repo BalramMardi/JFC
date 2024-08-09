@@ -9,7 +9,8 @@ const Standings = () => {
   const getStandings = () => {
     axios
       .get(
-        "https://api-football-standings.azharimm.dev/leagues/ind.1/standings?season=2023&sort=asc"
+        "https://api-football-standings.azharimm.dev/leagues/ind.1/standings?season=2023&sort=asc",
+        { proxy: false }
       )
       .then((res) => {
         console.log(res.data.data);

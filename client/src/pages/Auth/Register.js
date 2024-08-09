@@ -25,7 +25,6 @@ const Register = () => {
       console.log(error);
       toast.error("Something is wrong!");
     }
-    console.log(email, password);
   };
 
   return (

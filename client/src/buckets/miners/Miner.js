@@ -6,7 +6,7 @@ import News from "../../pages/news/News";
 const Miner = () => {
   return (
     <div className="miner-bucket">
-      <Redminers />
+      {/* <Redminers /> */}
       <News />
     </div>
   );

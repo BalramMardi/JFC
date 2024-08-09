@@ -2,15 +2,11 @@ import "./match.css";
 
 import React, { useEffect, useState } from "react";
 
-import jfc from "../../img/logo/jfc.png";
-import goa from "../../img/logo/nufc.png";
-import kerela from "../../img/logo/kb.png";
-import mb from "../../img/logo/mbsg.png";
-
 import axios from "axios";
 import dayjs from "dayjs";
 
 import { useNavigate } from "react-router";
+import MatchCardside from "./MatchCardside";
 
 const Match = () => {
   const [match, setMatch] = useState([]);
@@ -95,68 +91,12 @@ const Match = () => {
 
   return (
     <div className="matchinfo-container">
-      <div className="matchcard matchcard-side">
-        <div className="matchcard-h1">
-          <h1>
-            {" "}
-            {match[1] && match[1].date
-              ? dayjs(
-                  match.filter((m) => m.done)[
-                    match.filter((m) => m.done).length - 1
-                  ]?.date
-                ).format("DD MMM YYYY")
-              : "no"}{" "}
-          </h1>
-        </div>
-        <div className="matchcard-side-info">
-          <div className="matchcard-side-logo flex-col text-slate-950">
-            <img
-              src={
-                homeTeamfirst
-                  ? `api/v1/teams/teams-photo/${homeTeamfirst._id}`
-                  : null
-              }
-              alt={homeTeamfirst ? homeTeamfirst.teamname : "Unknown Team"}
-            />
-            <div className="text-center font-bold">
-              {homeTeamfirst ? homeTeamfirst.teamname : "no"}
-            </div>
-          </div>
-          <div className="matchcard-side-data flex-col ">
-            <div className="matchcard-side-data-score text-[25px]">
-              {
-                match.filter((m) => m.done)[
-                  match.filter((m) => m.done).length - 1
-                ]?.homescore
-              }
-              -
-              {
-                match.filter((m) => m.done)[
-                  match.filter((m) => m.done).length - 1
-                ]?.awayscore
-              }
-            </div>
-            <div className="text-sm ">Full Time</div>
-          </div>
-          <div className="matchcard-side-logo flex-col text-slate-950">
-            <img
-              src={
-                awayTeamfirst
-                  ? `api/v1/teams/teams-photo/${awayTeamfirst._id}`
-                  : null
-              }
-              alt={awayTeamfirst ? awayTeamfirst.teamname : "Unknown Team"}
-            />
-            <div className="text-center font-bold">
-              {awayTeamfirst ? awayTeamfirst.teamname : "no"}
-            </div>
-          </div>
-        </div>
-        <div className="matchcard-winning ">
-          <h1>{winning}</h1>
-        </div>
-      </div>
-
+      <MatchCardside
+        match={match}
+        homeTeamfirst={homeTeamfirst}
+        awayTeamfirst={awayTeamfirst}
+        winning={winning}
+      />
       {/* card 2 */}
 
       <div className="matchcard matchcard-middle">
@@ -181,6 +121,12 @@ const Match = () => {
             />
           </div>
           <div className="matchcard-middle-data">
+            <div className="matchcard-rightside-time w-[100%] h-[20%] text-[30px] text-slate-900 text-center font-bold">
+              {match[0] && match[0].slug
+                ? match.filter((m) => !m.done)[0]?.slug.split("-")[0]
+                : "no"}{" "}
+            </div>
+
             <div className="matchcard-middle-title">
               {match[0] && match[0].date
                 ? match.filter((m) => !m.done)[0]?.time
@@ -232,49 +178,79 @@ const Match = () => {
               : "no"}{" "}
           </h1>
         </div>
-        <div className="matchcard-side-info">
-          <div className="matchcard-side-logo  text-slate-900 relative">
-            <img
-              src={
-                homeTeamthird
-                  ? `api/v1/teams/teams-photo/${homeTeamthird._id}`
-                  : null
-              }
-              alt={homeTeamthird ? homeTeamthird.teamname : "Unknown Team"}
-            />
-            {/* <div className="text-center font-bold ">
-              {homeTeamthird ? homeTeamthird.teamname : "no"}
-            </div> */}
+        <div className=" w-[100%] h-[100%] flex flex-col">
+          <div className="matchcard-rightside-time w-[100%] h-[20%] text-[30px] text-slate-900 text-center font-bold">
+            {match[1] && match[1].slug
+              ? match.filter((m) => !m.done)[1]?.slug.split("-")[0]
+              : "no"}{" "}
           </div>
-          <div className="matchcard-rightside-data flex-col relative text-[40px]">
-            <div className="matchcard-rightside-time">
-              {match[1] && match[1].date
-                ? match.filter((m) => !m.done)[1]?.time
-                : "no"}{" "}
-            </div>
-            <div className="text-[12px] text-slate-900 text-center">
-              {match[1] && match[1].date
-                ? match.filter((m) => !m.done)[1]?.stadium
-                : "no"}{" "}
+          <div className="flex flex-grow  w-[100%]">
+            <div className="flex flex-col flex-[3] ">
+              <div className="flex-[3]  flex justify-center">
+                <div className="matchcard-side-logo  text-slate-900 relative">
+                  <img
+                    src={
+                      homeTeamthird
+                        ? `api/v1/teams/teams-photo/${homeTeamthird._id}`
+                        : null
+                    }
+                    alt={
+                      homeTeamthird ? homeTeamthird.teamname : "Unknown Team"
+                    }
+                  />
+                </div>
+              </div>
+              <div className="flex-[2] ">
+                <div className=" text-center text-slate-900 font-bold">
+                  {homeTeamthird ? homeTeamthird.teamname : "no"}
+                </div>
+              </div>
             </div>
 
-            <div className="text-xl absolute top-[110px] w-[350px] text-center text-slate-900">
-              {homeTeamthird ? homeTeamthird.teamname : "no"} -{" "}
-              {awayTeamthird ? awayTeamthird.teamname : "no"}
+            <div className="flex flex-col items-center justify-top flex-[4] ">
+              <div className="text-[16px] font-bold text-slate-900 text-center">
+                Kickoff
+              </div>
+              <div>
+                <div className="matchcard-rightside-time text-[42px] font-bold">
+                  {match[1] && match[1].date
+                    ? match.filter((m) => !m.done)[1]?.time
+                    : "no"}{" "}
+                </div>
+              </div>
+              <div className="text-[12px] font-bold text-slate-900 text-center">
+                LIVE
+              </div>
+              <div>
+                <div className="text-[12px] text-slate-900 text-center">
+                  {match[1] && match[1].date
+                    ? match.filter((m) => !m.done)[1]?.stadium
+                    : "no"}{" "}
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="matchcard-side-logo text-slate-900">
-            <img
-              src={
-                awayTeamthird
-                  ? `api/v1/teams/teams-photo/${awayTeamthird._id}`
-                  : null
-              }
-              alt={awayTeamthird ? awayTeamthird.teamname : "Unknown Team"}
-            />
-            {/* <div className="text-center font-bold">
-              {awayTeamthird ? awayTeamthird.teamname : "no"}
-            </div> */}
+
+            <div className="flex flex-col flex-[3] ">
+              <div className="flex-[3]  flex justify-center">
+                <div className="matchcard-side-logo  text-slate-900 relative">
+                  <img
+                    src={
+                      awayTeamthird
+                        ? `api/v1/teams/teams-photo/${awayTeamthird._id}`
+                        : null
+                    }
+                    alt={
+                      awayTeamthird ? awayTeamthird.teamname : "Unknown Team"
+                    }
+                  />
+                </div>
+              </div>
+              <div className="flex-[2]">
+                <div className=" text-center text-slate-900 font-bold">
+                  {awayTeamthird ? awayTeamthird.teamname : "no"}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="matchcard-ticket">

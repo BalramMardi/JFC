@@ -10,12 +10,13 @@ const Topbar = () => {
         <img src={jfc} alt="jfc" onClick={() => navigate("/")} />
       </div>
       <div onClick={() => navigate("/schedule")}>Schedule</div>
+
       <div onClick={() => navigate("/result")}>Results</div>
       <div onClick={() => navigate("/players")}>Players</div>
       <div onClick={() => navigate("/ticket")}>Tickets</div>
       <div onClick={() => navigate("/standings")}>Standings</div>
 
-      <div onClick={() => navigate("/pagenotfound")}>Photos</div>
+      {/* <div onClick={() => navigate("/pagenotfound")}>Photos</div> */}
     </div>
   );
 };

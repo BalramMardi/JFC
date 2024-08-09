@@ -70,8 +70,15 @@ const Threetile = () => {
 
             <div className="info first">
               <div className="title first-title">{threeNews[0].title}</div>
-              <div className="des first-des">
-                {threeNews[0].desc.split(/\s+/).slice(0, 20).join(" ")} ...
+              <div
+                dangerouslySetInnerHTML={{
+                  __html:
+                    threeNews[0]?.desc.split(/\s+/).slice(0, 20).join(" ") +
+                    " . . .",
+                }}
+                className="des first-des "
+              >
+                {/* {threeNews[0].desc.split(/\s+/).slice(0, 20).join(" ")} ... */}
               </div>
               <div className="time first-time">{threeNews[0].date}</div>
             </div>
@@ -106,8 +113,15 @@ const Threetile = () => {
 
             <div className="info first">
               <div className="title middle-title">{threeNews[1].title}</div>
-              <div className="des middle-des">
-                {threeNews[1].desc.split(/\s+/).slice(0, 20).join(" ")} ...
+              <div
+                className="des middle-des"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    threeNews[1]?.desc.split(/\s+/).slice(0, 20).join(" ") +
+                    " . . .",
+                }}
+              >
+                {/* {threeNews[1].desc.split(/\s+/).slice(0, 20).join(" ")} ... */}
               </div>
               <div className="time middle-time">{threeNews[1].date}</div>
             </div>
@@ -141,8 +155,15 @@ const Threetile = () => {
 
             <div className="info third">
               <div className="title third-title">{threeNews[2].title}</div>
-              <div className="des third-des">
-                {threeNews[2].desc.split(/\s+/).slice(0, 20).join(" ")} ...
+              <div
+                className="des third-des"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    threeNews[2]?.desc.split(/\s+/).slice(0, 20).join(" ") +
+                    " . . .",
+                }}
+              >
+                {/* {threeNews[2].desc.split(/\s+/).slice(0, 20).join(" ")} ... */}
               </div>
               <div className="time third-time">{threeNews[2].date}</div>
             </div>

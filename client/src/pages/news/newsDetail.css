@@ -1,6 +1,6 @@
 .newsD-container {
   /* margin-top: 114px; */
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
 }
 
 .news-container {
@@ -52,8 +52,8 @@
   height: auto;
   font-size: 20px;
   text-align: left;
-  font-weight: lighter;
-  color: gray;
+  /* font-weight: lighter; */
+  /* color: gray; */
 }
 
 pre {

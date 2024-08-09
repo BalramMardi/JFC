@@ -43,10 +43,17 @@ const News = () => {
                 </div>
                 <div className="newsdata-tiles-data">
                   <text className="newsdata-tiles-title">
-                    {e.title.split(/\s+/).slice(0, 13).join(" ")} ...
+                    {/* {e.title.split(/\s+/).slice(0, 13).join(" ")} ... */}
+                    {e.title.split("").slice(0, 50).join("") +
+                      (e.title.length > 13 ? "..." : "")}
                   </text>
-                  <div className="newsdata-tiles-des">
-                    {e.desc.split(/\s+/).slice(0, 15).join(" ")} ...
+                  <div
+                    className="newsdata-tiles-des"
+                    dangerouslySetInnerHTML={{
+                      __html: e?.desc.split(/\s+/).slice(0, 15).join(" "),
+                    }}
+                  >
+                    {/* {e.desc.split(/\s+/).slice(0, 15).join(" ")} ... */}
                   </div>
                 </div>
                 <div className="newsdata-tiles-bottom">
