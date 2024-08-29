@@ -17,7 +17,6 @@ const Layout = ({ children, title, description, keywords, author }) => {
       <Navbar />
       <Topbar />
       <main style={{ minHeight: "80vh" }}>{children}</main>
-      {/* <main>{children}</main> */}
 
       <Footer />
     </div>

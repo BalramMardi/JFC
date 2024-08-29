@@ -8,6 +8,9 @@ import dayjs from "dayjs";
 import { useNavigate } from "react-router";
 import MatchCardside from "./MatchCardside";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 const Match = () => {
   const [match, setMatch] = useState([]);
   const [teamData, setTeamData] = useState([]);
@@ -106,62 +109,98 @@ const Match = () => {
               ? dayjs(match.filter((m) => !m.done)[0]?.date).format(
                   "DD MMM YYYY"
                 )
-              : "no"}{" "}
+              : ""}{" "}
           </h1>
         </div>
         <div className="matchcard-middle-info">
           <div className="matchcard-middle-logo">
-            <img
+            {/* <img
               src={
                 homeTeamMiddle
                   ? `api/v1/teams/teams-photo/${homeTeamMiddle._id}`
                   : null
               }
               alt={homeTeamMiddle ? homeTeamMiddle.teamname : "Unknown Team"}
+            /> */}
+
+            <LazyLoadImage
+              alt={homeTeamMiddle ? homeTeamMiddle.teamname : "Unknown Team"}
+              width="200px"
+              height="100%"
+              effect="blur"
+              src={
+                homeTeamMiddle
+                  ? `api/v1/teams/teams-photo/${homeTeamMiddle._id}`
+                  : null
+              }
+              placeholderSrc={
+                homeTeamMiddle
+                  ? `api/v1/teams/teams-photo/${homeTeamMiddle._id}`
+                  : null
+              }
             />
           </div>
           <div className="matchcard-middle-data">
             <div className="matchcard-rightside-time w-[100%] h-[20%] text-[30px] text-slate-900 text-center font-bold">
               {match[0] && match[0].slug
                 ? match.filter((m) => !m.done)[0]?.slug.split("-")[0]
-                : "no"}{" "}
+                : ""}{" "}
             </div>
 
             <div className="matchcard-middle-title">
               {match[0] && match[0].date
                 ? match.filter((m) => !m.done)[0]?.time
-                : "no"}{" "}
+                : ""}{" "}
             </div>
             <div className="matchcard-middle-data-details">
               <div className="matchcard-middle-data-match">
                 <div className="matchcard-middle-data-match-home">
-                  {homeTeamMiddle ? homeTeamMiddle.teamname : "no"}
+                  {homeTeamMiddle ? homeTeamMiddle.teamname : ""}
                 </div>
                 <div className="matchcard-middle-data-match-v"> V </div>
                 <div className="matchcard-middle-data-match-away">
                   {" "}
-                  {awayTeamMiddle ? awayTeamMiddle.teamname : "no"}
+                  {awayTeamMiddle ? awayTeamMiddle.teamname : ""}
                 </div>
               </div>
               <div className="matchcard-middle-data-stadium">
                 {match[0] && match[0].date
                   ? match.filter((m) => !m.done)[0]?.stadium
-                  : "no"}{" "}
+                  : ""}{" "}
               </div>
             </div>
           </div>
           <div className="matchcard-middle-logo">
-            <img
+            {/* <img
               src={
                 awayTeamMiddle
                   ? `api/v1/teams/teams-photo/${awayTeamMiddle._id}`
                   : null
               }
               alt={awayTeamMiddle ? awayTeamMiddle.teamname : "Unknown Team"}
+            /> */}
+            <LazyLoadImage
+              alt={awayTeamMiddle ? awayTeamMiddle.teamname : "Unknown Team"}
+              width="200px"
+              height="100%"
+              effect="blur"
+              src={
+                awayTeamMiddle
+                  ? `api/v1/teams/teams-photo/${awayTeamMiddle._id}`
+                  : null
+              }
+              placeholderSrc={
+                awayTeamMiddle
+                  ? `api/v1/teams/teams-photo/${awayTeamMiddle._id}`
+                  : null
+              }
             />
           </div>
         </div>
-        <div className="matchcard-ticket">
+        <div
+          className="matchcard-ticket cursor-pointer"
+          onClick={() => navigate("/ticket")}
+        >
           <h1>TICKET</h1>
         </div>
       </div>
@@ -175,20 +214,20 @@ const Match = () => {
               ? dayjs(match.filter((m) => !m.done)[1]?.date).format(
                   "DD MMM YYYY"
                 )
-              : "no"}{" "}
+              : ""}{" "}
           </h1>
         </div>
         <div className=" w-[100%] h-[100%] flex flex-col">
           <div className="matchcard-rightside-time w-[100%] h-[20%] text-[30px] text-slate-900 text-center font-bold">
             {match[1] && match[1].slug
               ? match.filter((m) => !m.done)[1]?.slug.split("-")[0]
-              : "no"}{" "}
+              : ""}{" "}
           </div>
           <div className="flex flex-grow  w-[100%]">
             <div className="flex flex-col flex-[3] ">
               <div className="flex-[3]  flex justify-center">
                 <div className="matchcard-side-logo  text-slate-900 relative">
-                  <img
+                  {/* <img
                     src={
                       homeTeamthird
                         ? `api/v1/teams/teams-photo/${homeTeamthird._id}`
@@ -196,6 +235,24 @@ const Match = () => {
                     }
                     alt={
                       homeTeamthird ? homeTeamthird.teamname : "Unknown Team"
+                    }
+                  /> */}
+                  <LazyLoadImage
+                    alt={
+                      homeTeamthird ? homeTeamthird.teamname : "Unknown Team"
+                    }
+                    width="200px"
+                    height="100%"
+                    effect="blur"
+                    src={
+                      homeTeamthird
+                        ? `api/v1/teams/teams-photo/${homeTeamthird._id}`
+                        : null
+                    }
+                    placeholderSrc={
+                      homeTeamthird
+                        ? `api/v1/teams/teams-photo/${homeTeamthird._id}`
+                        : null
                     }
                   />
                 </div>
@@ -215,7 +272,7 @@ const Match = () => {
                 <div className="matchcard-rightside-time text-[42px] font-bold">
                   {match[1] && match[1].date
                     ? match.filter((m) => !m.done)[1]?.time
-                    : "no"}{" "}
+                    : ""}{" "}
                 </div>
               </div>
               <div className="text-[12px] font-bold text-slate-900 text-center">
@@ -225,7 +282,7 @@ const Match = () => {
                 <div className="text-[12px] text-slate-900 text-center">
                   {match[1] && match[1].date
                     ? match.filter((m) => !m.done)[1]?.stadium
-                    : "no"}{" "}
+                    : ""}{" "}
                 </div>
               </div>
             </div>
@@ -233,7 +290,7 @@ const Match = () => {
             <div className="flex flex-col flex-[3] ">
               <div className="flex-[3]  flex justify-center">
                 <div className="matchcard-side-logo  text-slate-900 relative">
-                  <img
+                  {/* <img
                     src={
                       awayTeamthird
                         ? `api/v1/teams/teams-photo/${awayTeamthird._id}`
@@ -242,18 +299,39 @@ const Match = () => {
                     alt={
                       awayTeamthird ? awayTeamthird.teamname : "Unknown Team"
                     }
+                  /> */}
+                  <LazyLoadImage
+                    alt={
+                      awayTeamthird ? awayTeamthird.teamname : "Unknown Team"
+                    }
+                    width="200px"
+                    height="100%"
+                    effect="blur"
+                    src={
+                      awayTeamthird
+                        ? `api/v1/teams/teams-photo/${awayTeamthird._id}`
+                        : null
+                    }
+                    placeholderSrc={
+                      awayTeamthird
+                        ? `api/v1/teams/teams-photo/${awayTeamthird._id}`
+                        : null
+                    }
                   />
                 </div>
               </div>
               <div className="flex-[2]">
                 <div className=" text-center text-slate-900 font-bold">
-                  {awayTeamthird ? awayTeamthird.teamname : "no"}
+                  {awayTeamthird ? awayTeamthird.teamname : ""}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="matchcard-ticket">
+        <div
+          className="matchcard-ticket cursor-pointer"
+          onClick={() => navigate("/ticket")}
+        >
           <h1>TICKET</h1>
         </div>
       </div>

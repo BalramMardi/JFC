@@ -14,6 +14,8 @@ const Topbar = () => {
       <div onClick={() => navigate("/result")}>Results</div>
       <div onClick={() => navigate("/players")}>Players</div>
       <div onClick={() => navigate("/ticket")}>Tickets</div>
+      <div onClick={() => navigate("/videos")}>Videos</div>
+
       <div onClick={() => navigate("/standings")}>Standings</div>
 
       {/* <div onClick={() => navigate("/pagenotfound")}>Photos</div> */}

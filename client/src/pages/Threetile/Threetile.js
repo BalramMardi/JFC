@@ -1,73 +1,61 @@
 import React, { useEffect, useState } from "react";
-import middle from "../../img/news/mid.jpeg";
-import first from "../../img/news/first.jpeg";
-import third from "../../img/news/third.jpeg";
 import "./threetile.css";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Threetile = () => {
   const navigate = useNavigate();
   const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true); // Loading state
 
-  //getallNews
+  // Get all news
   const getAllNews = async () => {
     try {
       const { data } = await axios.get("api/v1/news/get-news");
       setNews(data.news);
+      setLoading(false); // Stop loading once data is fetched
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
-
-  const threeNews = news.filter((n) => n.tile === true).slice(0, 3);
 
   useEffect(() => {
     getAllNews();
   }, []);
 
+  const threeNews = news.filter((n) => n.tile === true).slice(0, 3);
+
   const [num, setNum] = useState(2);
 
-  const hover1 = () => {
-    setNum(1);
-  };
-  const hover2 = () => {
-    setNum(2);
-  };
-  const hover3 = () => {
-    setNum(3);
-  };
+  const hover1 = () => setNum(1);
+  const hover2 = () => setNum(2);
+  const hover3 = () => setNum(3);
 
   return (
     <>
-      {threeNews.length > 0 ? (
+      {loading ? (
+        // Loading placeholder or skeleton
+        <div className="skeleton-loader">
+          <div className="skeleton-tile skeleton-tile-left"></div>
+          <div className="skeleton-tile skeleton-tile-middle"></div>
+          <div className="skeleton-tile skeleton-tile-right"></div>
+        </div>
+      ) : threeNews.length > 0 ? (
         <div className="three-container">
           <div
-            // className="tiles"
-            // style={{ flex: num === 1 ? 3 : 1 }}
-
-            className={num === 1 ? "button1 food " : "button"}
+            className={num === 1 ? "button1 food" : "button"}
             onMouseOver={hover1}
             onClick={() => navigate(`/news/${threeNews[0].slug}`)}
           >
             <img
               src={`api/v1/news/news-photo/${threeNews[0]._id}`}
               alt="first"
-              className={num === 1 ? "imgscale " : "imgnotscale"}
+              className={num === 1 ? "imgscale" : "imgnotscale"}
               onMouseOver={hover1}
             />
-            {/* <LazyLoadImage
-              className={num === 1 ? "imgscale " : "imgnotscale"}
-              alt="first"
-              effect="blur"
-              wrapperProps={{
-                // If you need to, you can tweak the effect transition using the wrapper style.
-                style: { transitionDelay: "1s" },
-              }}
-              src={`${process.env.REACT_APP_API}/api/v1/news/news-photo/${threeNews[0]._id}`}
-              placeholderSrc={`${process.env.REACT_APP_API}/api/v1/news/news-photo/${threeNews[0]._id}`}
-            /> */}
-
             <div className="info first">
               <div className="title first-title">{threeNews[0].title}</div>
               <div
@@ -76,41 +64,23 @@ const Threetile = () => {
                     threeNews[0]?.desc.split(/\s+/).slice(0, 20).join(" ") +
                     " . . .",
                 }}
-                className="des first-des "
-              >
-                {/* {threeNews[0].desc.split(/\s+/).slice(0, 20).join(" ")} ... */}
-              </div>
+                className="des first-des"
+              ></div>
               <div className="time first-time">{threeNews[0].date}</div>
             </div>
             <div className="overlay"></div>
           </div>
           <div
-            // className="tiles"
-            // style={{ flex: num === 2 ? 3 : 1 }}
-
-            className={num === 2 ? "button2 food " : "button"}
+            className={num === 2 ? "button2 food" : "button"}
             onMouseOver={hover2}
             onClick={() => navigate(`/news/${threeNews[1].slug}`)}
           >
             <img
               src={`api/v1/news/news-photo/${threeNews[1]._id}`}
               alt="middle"
-              className={num === 2 ? "imgscale " : "imgnotscale"}
+              className={num === 2 ? "imgscale" : "imgnotscale"}
               onMouseOver={hover2}
             />
-
-            {/* <LazyLoadImage
-              className={num === 2 ? "imgscale " : "imgnotscale"}
-              alt="second"
-              effect="blur"
-              wrapperProps={{
-                // If you need to, you can tweak the effect transition using the wrapper style.
-                style: { transitionDelay: "1s" },
-              }}
-              src={`${process.env.REACT_APP_API}/api/v1/news/news-photo/${threeNews[1]._id}`}
-              placeholderSrc={`${process.env.REACT_APP_API}/api/v1/news/news-photo/${threeNews[1]._id}`}
-            /> */}
-
             <div className="info first">
               <div className="title middle-title">{threeNews[1].title}</div>
               <div
@@ -120,39 +90,22 @@ const Threetile = () => {
                     threeNews[1]?.desc.split(/\s+/).slice(0, 20).join(" ") +
                     " . . .",
                 }}
-              >
-                {/* {threeNews[1].desc.split(/\s+/).slice(0, 20).join(" ")} ... */}
-              </div>
+              ></div>
               <div className="time middle-time">{threeNews[1].date}</div>
             </div>
             <div className="overlay"></div>
           </div>
           <div
-            // className="tiles"
-            // style={{ flex: num === 3 ? 3 : 1 }}
-
-            className={num === 3 ? "button3 food " : "button"}
+            className={num === 3 ? "button3 food" : "button"}
             onMouseOver={hover3}
             onClick={() => navigate(`/news/${threeNews[2].slug}`)}
           >
             <img
               src={`api/v1/news/news-photo/${threeNews[2]._id}`}
               alt="third"
-              className={num === 3 ? "imgscale " : "imgnotscale"}
+              className={num === 3 ? "imgscale" : "imgnotscale"}
               onMouseOver={hover3}
             />
-            {/* <LazyLoadImage
-              className={num === 3 ? "imgscale " : "imgnotscale"}
-              alt="third"
-              effect="blur"
-              wrapperProps={{
-                // If you need to, you can tweak the effect transition using the wrapper style.
-                style: { transitionDelay: "1s" },
-              }}
-              src={`${process.env.REACT_APP_API}/api/v1/news/news-photo/${threeNews[2]._id}`}
-              placeholderSrc={`${process.env.REACT_APP_API}/api/v1/news/news-photo/${threeNews[2]._id}`}
-            /> */}
-
             <div className="info third">
               <div className="title third-title">{threeNews[2].title}</div>
               <div
@@ -162,9 +115,7 @@ const Threetile = () => {
                     threeNews[2]?.desc.split(/\s+/).slice(0, 20).join(" ") +
                     " . . .",
                 }}
-              >
-                {/* {threeNews[2].desc.split(/\s+/).slice(0, 20).join(" ")} ... */}
-              </div>
+              ></div>
               <div className="time third-time">{threeNews[2].date}</div>
             </div>
             <div className="overlay"></div>

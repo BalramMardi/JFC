@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../layout/Layout";
 import { useNavigate } from "react-router";
 import dayjs from "dayjs";
+import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import axios from "axios";
 
@@ -51,7 +53,7 @@ const Result = () => {
   }, []);
 
   return (
-    <Layout>
+    <div>
       <div className="schedule-bucket">
         <div className="schedule-container">
           <h1>First Team Result</h1>
@@ -84,7 +86,7 @@ const Result = () => {
                       <div className="scline-mid-break"></div>
                     </div>
                     <div className="sctype">
-                      <img
+                      {/* <img
                         // src={`${process.env.REACT_APP_API}/api/v1/teams/teams-photo/${homeTeam._id}`}
                         // alt={homeTeam}
                         src={
@@ -93,6 +95,22 @@ const Result = () => {
                             : null
                         }
                         alt={leagueUsed ? leagueUsed.leaname : " "}
+                      /> */}
+                      <LazyLoadImage
+                        alt={leagueUsed ? leagueUsed.leaname : " "}
+                        width="100%"
+                        height="100%"
+                        effect="blur"
+                        src={
+                          leagueUsed
+                            ? `api/v1/league/league-photo/${leagueUsed._id}`
+                            : null
+                        }
+                        placeholderSrc={
+                          leagueUsed
+                            ? `api/v1/league/league-photo/${leagueUsed._id}`
+                            : null
+                        }
                       />
                     </div>
                     <div className="scline-mid">
@@ -114,7 +132,7 @@ const Result = () => {
                         {homeTeam ? homeTeam.teamname : "Home Team"}
                       </div>
                       <div className="scmain-homepic">
-                        <img
+                        {/* <img
                           // src={`${process.env.REACT_APP_API}/api/v1/teams/teams-photo/${homeTeam._id}`}
                           // alt={homeTeam}
                           src={
@@ -123,6 +141,22 @@ const Result = () => {
                               : null
                           }
                           alt={homeTeam ? homeTeam.teamname : "Home Team"}
+                        /> */}
+                        <LazyLoadImage
+                          alt={homeTeam ? homeTeam.teamname : "Home Team"}
+                          width="100%"
+                          height="100%"
+                          effect="blur"
+                          src={
+                            homeTeam
+                              ? `api/v1/teams/teams-photo/${homeTeam._id}`
+                              : null
+                          }
+                          placeholderSrc={
+                            homeTeam
+                              ? `api/v1/teams/teams-photo/${homeTeam._id}`
+                              : null
+                          }
                         />
                       </div>
                       <div className="scScoreResult">
@@ -151,7 +185,7 @@ const Result = () => {
                         </div>
                       </div>
                       <div className="scmain-awaypic">
-                        <img
+                        {/* <img
                           // src={`${process.env.REACT_APP_API}/api/v1/teams/teams-photo/${homeTeam._id}`}
                           // alt={homeTeam}
                           src={
@@ -160,6 +194,22 @@ const Result = () => {
                               : null
                           }
                           alt={awayTeam ? awayTeam.teamname : "Away Team"}
+                        /> */}
+                        <LazyLoadImage
+                          alt={awayTeam ? awayTeam.teamname : "Away Team"}
+                          width="100%"
+                          height="100%"
+                          effect="blur"
+                          src={
+                            awayTeam
+                              ? `api/v1/teams/teams-photo/${awayTeam._id}`
+                              : null
+                          }
+                          placeholderSrc={
+                            awayTeam
+                              ? `api/v1/teams/teams-photo/${awayTeam._id}`
+                              : null
+                          }
                         />
                       </div>
                       <div className="scmain-away">
@@ -177,7 +227,7 @@ const Result = () => {
           )}
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 

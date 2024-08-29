@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Layout from "../../layout/Layout";
+import { standingsData } from "./standingsData";
 
 const Standings = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const getStandings = () => {
+  /* const getStandings = () => {
     axios
       .get(
         "https://api-football-standings.azharimm.dev/leagues/ind.1/standings?season=2023&sort=asc",
@@ -24,10 +25,24 @@ const Standings = () => {
 
   useEffect(() => {
     getStandings();
+  }, []); */
+
+  const getStandings = () => {
+    try {
+      setData(standingsData.data.standings);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getStandings();
   }, []);
 
   return (
-    <Layout title={"Standings"}>
+    <div>
       <div className="schedule-bucket">
         <div className="schedule-container">
           <div className="text-[30px] font-bold uppercase">Standings</div>
@@ -41,7 +56,7 @@ const Standings = () => {
               <div className="schedule-container-top mb-4 ">
                 {/* <h1 className=" ml-[50%] ">ISL</h1> */}
                 <img
-                  src="https://upload.wikimedia.org/wikipedia/en/6/67/Indian_Super_League.png"
+                  src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Indian_Super_League_logo.svg/315px-Indian_Super_League_logo.svg.png"
                   alt="logo"
                   style={{ width: "80px" }}
                   className="ml-[50%]"
@@ -168,7 +183,7 @@ const Standings = () => {
           )}
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 

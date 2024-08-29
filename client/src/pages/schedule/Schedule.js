@@ -7,45 +7,10 @@ import dayjs from "dayjs";
 
 import axios from "axios";
 import { Link } from "react-router-dom";
-const tgVar = 300;
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
-const matches = [
-  {
-    no: 1,
-    day: 1,
-    home: "Jamshedpur",
-    away: "mohun bagan",
-    stadium: "JRD Tata Sports Complex",
-  },
-  {
-    no: 2,
-    day: 2,
-    home: "Jamshedpur",
-    away: "mohun bagan",
-    stadium: "JRD Tata Sports Complex",
-  },
-  {
-    no: 3,
-    day: 3,
-    home: "Jamshedpur",
-    away: "mohun bagan",
-    stadium: "JRD Tata Sports Complex",
-  },
-  {
-    no: 4,
-    day: 4,
-    home: "Jamshedpur",
-    away: "mohun bagan",
-    stadium: "JRD Tata Sports Complex",
-  },
-  {
-    no: 5,
-    day: 5,
-    home: "Jamshedpur",
-    away: "mohun bagan",
-    stadium: "JRD Tata Sports Complex",
-  },
-];
+const tgVar = 300;
 
 const Schedule = () => {
   const [match, setMatch] = useState([]);
@@ -94,7 +59,7 @@ const Schedule = () => {
   const matchDone = match.filter((m) => m.done).length + 1;
 
   return (
-    <Layout>
+    <div>
       <div className="schedule-bucket">
         <div className="schedule-container">
           <h1>First Team Schedule</h1>
@@ -133,15 +98,31 @@ const Schedule = () => {
                       <div className="scline-mid-break"></div>
                     </div>
                     <div className="sctype">
-                      <img
+                      {/* <img
                         // src={`${process.env.REACT_APP_API}/api/v1/teams/teams-photo/${homeTeam._id}`}
-                        // alt={homeTeam}
+                        // alt={homeTeam}                 
                         src={
                           leagueUsed
                             ? `api/v1/league/league-photo/${leagueUsed._id}`
                             : null
                         }
                         alt={leagueUsed ? leagueUsed.leaname : "Unknown Team"}
+                      /> */}
+                      <LazyLoadImage
+                        alt={leagueUsed ? leagueUsed.leaname : "Unknown Team"}
+                        width="100%"
+                        height="100%"
+                        effect="blur"
+                        src={
+                          leagueUsed
+                            ? `api/v1/league/league-photo/${leagueUsed._id}`
+                            : null
+                        }
+                        placeholderSrc={
+                          leagueUsed
+                            ? `api/v1/league/league-photo/${leagueUsed._id}`
+                            : null
+                        }
                       />
                     </div>
                     <div className="scline-mid">
@@ -163,7 +144,7 @@ const Schedule = () => {
                         {homeTeam ? homeTeam.teamname : "Unknown Team"}
                       </div>
                       <div className="scmain-homepic">
-                        <img
+                        {/* <img
                           // src={`${process.env.REACT_APP_API}/api/v1/teams/teams-photo/${homeTeam._id}`}
                           // alt={homeTeam}
                           src={
@@ -172,11 +153,27 @@ const Schedule = () => {
                               : null
                           }
                           alt={homeTeam ? homeTeam.teamname : "Unknown Team"}
+                        /> */}
+                        <LazyLoadImage
+                          alt={homeTeam ? homeTeam.teamname : "Unknown Team"}
+                          width="100%"
+                          height="100%"
+                          effect="blur"
+                          src={
+                            homeTeam
+                              ? `api/v1/teams/teams-photo/${homeTeam._id}`
+                              : null
+                          }
+                          placeholderSrc={
+                            homeTeam
+                              ? `api/v1/teams/teams-photo/${homeTeam._id}`
+                              : null
+                          }
                         />
                       </div>
                       <div className="scmain-v">VS</div>
                       <div className="scmain-awaypic">
-                        <img
+                        {/* <img
                           // src={`${process.env.REACT_APP_API}/api/v1/teams/teams-photo/${homeTeam._id}`}
                           // alt={homeTeam}
                           src={
@@ -185,6 +182,22 @@ const Schedule = () => {
                               : null
                           }
                           alt={awayTeam ? awayTeam.teamname : "Unknown Team"}
+                        /> */}
+                        <LazyLoadImage
+                          alt={awayTeam ? awayTeam.teamname : "Unknown Team"}
+                          width="100%"
+                          height="100%"
+                          effect="blur"
+                          src={
+                            awayTeam
+                              ? `api/v1/teams/teams-photo/${awayTeam._id}`
+                              : null
+                          }
+                          placeholderSrc={
+                            awayTeam
+                              ? `api/v1/teams/teams-photo/${awayTeam._id}`
+                              : null
+                          }
                         />
                       </div>
                       <div className="scmain-away">
@@ -226,7 +239,7 @@ const Schedule = () => {
           )}
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 

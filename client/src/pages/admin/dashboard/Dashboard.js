@@ -9,7 +9,9 @@ function Dashboard() {
     <div className="dashboard-container">
       {/* <AdminMenu /> */}
       {/* <div className="content">name</div> */}
-      <Outlet />
+      <React.Suspense fallback="Loading...">
+        <Outlet />
+      </React.Suspense>
     </div>
   );
 }

@@ -32,7 +32,7 @@
   object-fit: cover;
   overflow: hidden;
   height: 571px;
-  background-color: rebeccapurple;
+  /* background-color: rebeccapurple; */
 }
 
 .tv-wrapper:hover .tv-title {

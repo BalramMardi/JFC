@@ -4,6 +4,8 @@ import axios from "axios";
 import dayjs from "dayjs";
 
 import { useNavigate } from "react-router";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const MatchCardside = ({ match, homeTeamfirst, awayTeamfirst, winning }) => {
   return (
@@ -17,21 +19,37 @@ const MatchCardside = ({ match, homeTeamfirst, awayTeamfirst, winning }) => {
                   match.filter((m) => m.done).length - 1
                 ]?.date
               ).format("DD MMM YYYY")
-            : "no"}{" "}
+            : ""}{" "}
         </h1>
       </div>
       <div className="matchcard-side-info">
         <div className="matchcard-side-logo flex-col text-slate-950">
-          <img
+          {/* <img
             src={
               homeTeamfirst
                 ? `api/v1/teams/teams-photo/${homeTeamfirst._id}`
                 : null
             }
             alt={homeTeamfirst ? homeTeamfirst.teamname : "Unknown Team"}
+          /> */}
+          <LazyLoadImage
+            alt={homeTeamfirst ? homeTeamfirst.teamname : "Unknown Team"}
+            width="100px"
+            height="100%"
+            effect="blur"
+            src={
+              homeTeamfirst
+                ? `api/v1/teams/teams-photo/${homeTeamfirst._id}`
+                : null
+            }
+            placeholderSrc={
+              homeTeamfirst
+                ? `api/v1/teams/teams-photo/${homeTeamfirst._id}`
+                : null
+            }
           />
           <div className="text-center font-bold">
-            {homeTeamfirst ? homeTeamfirst.teamname : "no"}
+            {homeTeamfirst ? homeTeamfirst.teamname : ""}
           </div>
         </div>
         <div className="matchcard-side-data flex-col ">
@@ -51,16 +69,32 @@ const MatchCardside = ({ match, homeTeamfirst, awayTeamfirst, winning }) => {
           <div className="text-sm ">Full Time</div>
         </div>
         <div className="matchcard-side-logo flex-col text-slate-950">
-          <img
+          {/*  <img
             src={
               awayTeamfirst
                 ? `api/v1/teams/teams-photo/${awayTeamfirst._id}`
                 : null
             }
             alt={awayTeamfirst ? awayTeamfirst.teamname : "Unknown Team"}
+          /> */}
+          <LazyLoadImage
+            alt={awayTeamfirst ? awayTeamfirst.teamname : "Unknown Team"}
+            width="100px"
+            height="100%"
+            effect="blur"
+            src={
+              awayTeamfirst
+                ? `api/v1/teams/teams-photo/${awayTeamfirst._id}`
+                : null
+            }
+            placeholderSrc={
+              awayTeamfirst
+                ? `api/v1/teams/teams-photo/${awayTeamfirst._id}`
+                : null
+            }
           />
           <div className="text-center font-bold">
-            {awayTeamfirst ? awayTeamfirst.teamname : "no"}
+            {awayTeamfirst ? awayTeamfirst.teamname : ""}
           </div>
         </div>
       </div>

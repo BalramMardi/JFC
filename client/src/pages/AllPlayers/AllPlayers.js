@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../layout/Layout";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import axios from "axios";
 
 const squad = [
@@ -25,75 +27,6 @@ const squad = [
   },
 ];
 
-const players = [
-  {
-    _id: 4,
-    name: "TP rehnesh",
-    number: 1,
-    position: "Goalkeeper",
-    appears: 1,
-    goals: 2,
-    assists: 3,
-    imgsrc:
-      "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTXiqCJ19mSPL6nNXEFbMRGg-Jo4KhEwr8NX1Ne0K8gmVIm-T6a",
-  },
-  {
-    _id: 5,
-    name: "Sergio Ramos",
-    number: 1,
-    position: "Defender",
-    appears: 1,
-    goals: 2,
-    assists: 3,
-    imgsrc:
-      "http://t2.gstatic.com/images?q=tbn:ANd9GcQ4Q9-v_IGNC45YKqEXJ0JJ-LPWwemoZ7scxRRFotTUyJGeJBXGnJ7d2tSUQmPANXCC8tubUQ",
-  },
-  {
-    _id: 6,
-    name: "Sergio Ramos",
-    number: 1,
-    position: "Midfielder",
-    appears: 1,
-    goals: 2,
-    assists: 3,
-    imgsrc:
-      "http://t2.gstatic.com/images?q=tbn:ANd9GcQ4Q9-v_IGNC45YKqEXJ0JJ-LPWwemoZ7scxRRFotTUyJGeJBXGnJ7d2tSUQmPANXCC8tubUQ",
-  },
-  {
-    _id: 7,
-    name: "Sergio Ramos",
-    number: 1,
-    position: "Forward",
-    appears: 1,
-    goals: 2,
-    assists: 3,
-    imgsrc:
-      "http://t2.gstatic.com/images?q=tbn:ANd9GcQ4Q9-v_IGNC45YKqEXJ0JJ-LPWwemoZ7scxRRFotTUyJGeJBXGnJ7d2tSUQmPANXCC8tubUQ",
-  },
-  {
-    _id: 8,
-    name: "Sergio Ramos",
-    number: 1,
-    position: "Coach",
-    appears: 1,
-    goals: 2,
-    assists: 3,
-    imgsrc:
-      "http://t2.gstatic.com/images?q=tbn:ANd9GcQ4Q9-v_IGNC45YKqEXJ0JJ-LPWwemoZ7scxRRFotTUyJGeJBXGnJ7d2tSUQmPANXCC8tubUQ",
-  },
-  {
-    _id: 9,
-    name: "Iker Casillas",
-    number: 1,
-    position: "Goalkeeper",
-    appears: 1,
-    goals: 2,
-    assists: 3,
-    imgsrc:
-      "https://www.realmadrid.com/cs/Satellite?blobcol=urldata&blobheader=image%2Fjpeg&blobkey=id&blobtable=MungoBlobs&blobwhere=1203361428742&ssbinary=true",
-  },
-];
-
 const AllPlayers = () => {
   const [allPlayers, setAllPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -116,7 +49,7 @@ const AllPlayers = () => {
   }, []);
 
   return (
-    <Layout>
+    <div>
       <div className="mt-[114px] flex flex-col justify-center items-center w-[100%] h-fit p-4">
         <div className="text-slate-200 mt-4 text-5xl font-semibold">Squad</div>
 
@@ -140,10 +73,18 @@ const AllPlayers = () => {
                           <div className="mt-4">
                             <div key={p._id} className="players-cards">
                               <div className="players-cards-img">
-                                <img
+                                {/* <img
                                   src={`api/v1/player/players-photo/${p._id}`}
                                   // src={p.imgsrc}
                                   alt={p.name}
+                                /> */}
+                                <LazyLoadImage
+                                  alt={p.name}
+                                  width="100%"
+                                  height="100%"
+                                  effect="blur"
+                                  src={`api/v1/player/players-photo/${p._id}`}
+                                  placeholderSrc={`api/v1/player/players-photo/${p._id}`}
                                 />
                               </div>
                               <div className="players-cards-topback"></div>
@@ -212,7 +153,7 @@ const AllPlayers = () => {
           </div>
         )}
       </div>
-    </Layout>
+    </div>
   );
 };
 

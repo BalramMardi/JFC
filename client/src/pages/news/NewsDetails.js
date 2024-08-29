@@ -4,6 +4,8 @@ import axios from "axios";
 import { useParams } from "react-router";
 import Footer from "../../components/footer/Footer";
 
+import NewsCanvas from "./NewsCanvas";
+
 const NewsDetails = () => {
   const params = useParams();
   const [news, setNews] = useState({});
@@ -25,7 +27,7 @@ const NewsDetails = () => {
 
   return (
     <div>
-      <div className="newsD-container">
+      <div className="newsD-container mt-28">
         <div className="news-container">
           <div className="news-img1">
             {news._id && (
@@ -47,7 +49,7 @@ const NewsDetails = () => {
               />
             )}
           </div>
-          <div className="news-article">
+          <div className="news-article pb-4">
             <div className="news-heading">
               <h1>{news?.title}</h1>
             </div>
@@ -56,10 +58,11 @@ const NewsDetails = () => {
               dangerouslySetInnerHTML={{ __html: news?.desc }}
             />
             {/* <pre className="news-desc-large">{news?.desc}</pre> */}
+            <NewsCanvas />
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

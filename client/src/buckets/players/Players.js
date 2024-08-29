@@ -6,7 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import axios from "axios";
 const Players = () => {
   const [players, setPlayers] = useState([]);
@@ -51,9 +52,17 @@ const Players = () => {
           {players?.map((p) => (
             <div key={p._id} className="players-cards">
               <div className="players-cards-img">
-                <img
+                {/* <img
                   src={`api/v1/player/players-photo/${p._id}`}
                   alt={p.name}
+                /> */}
+                <LazyLoadImage
+                  alt={p.name}
+                  width="100%"
+                  height="100%"
+                  effect="blur"
+                  src={`api/v1/player/players-photo/${p._id}`}
+                  placeholderSrc={`api/v1/player/players-photo/${p._id}`}
                 />
               </div>
               <div className="players-cards-topback"></div>

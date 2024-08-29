@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./news.css";
 import { useNavigate } from "react-router";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import axios from "axios";
 
 const News = () => {
@@ -34,11 +35,19 @@ const News = () => {
                 onClick={() => navigate(`/news/${e.slug}`)}
               >
                 <div className="newsdata-tiles-img">
-                  <img
+                  {/* <img
                     src={`api/v1/news/news-photo/${e._id}`}
                     alt={e.title}
                     height="100%"
                     width="100%"
+                  /> */}
+                  <LazyLoadImage
+                    alt={e.title}
+                    width="100%"
+                    height="100%"
+                    effect="blur"
+                    src={`api/v1/news/news-photo/${e._id}`}
+                    placeholderSrc={`api/v1/news/news-photo/${e._id}`}
                   />
                 </div>
                 <div className="newsdata-tiles-data">
