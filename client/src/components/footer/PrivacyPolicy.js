@@ -3,7 +3,7 @@ import Layout from "../../layout/Layout";
 
 const PrivacyPolicy = () => {
   return (
-    <Layout>
+    <div>
       <div className="container mx-auto px-4 py-12 bg-slate-200 mt-20">
         <h1 className="text-4xl font-bold text-center mb-8">Privacy Policy</h1>
 
@@ -104,7 +104,7 @@ const PrivacyPolicy = () => {
           </p>
         </section>
       </div>
-    </Layout>
+    </div>
   );
 };
 

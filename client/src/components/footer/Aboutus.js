@@ -5,7 +5,7 @@ import Layout from "../../layout/Layout";
 
 const AboutUs = () => {
   return (
-    <Layout>
+    <div>
       <div className="container mx-auto px-4 py-12 bg-slate-200 mt-20">
         <h1 className="text-4xl font-bold text-center mb-8">About Us</h1>
         <div>
@@ -109,7 +109,7 @@ const AboutUs = () => {
           </p>
         </section>
       </div>
-    </Layout>
+    </div>
   );
 };
 

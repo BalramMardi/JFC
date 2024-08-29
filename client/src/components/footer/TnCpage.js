@@ -4,9 +4,9 @@ import Layout from "../../layout/Layout";
 
 const TnCpage = () => {
   return (
-    <Layout>
+    <div>
       <TermsAndConditions />
-    </Layout>
+    </div>
   );
 };
 
