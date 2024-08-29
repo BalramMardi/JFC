@@ -24,8 +24,8 @@ const Login = () => {
   };
 
   return (
-    <div title={"Register"}>
-      <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div>
+      <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 mt-28">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-20 w-auto"
@@ -66,14 +66,14 @@ const Login = () => {
                 >
                   Password
                 </label>
-                <div className="text-sm">
+                {/* <div className="text-sm">
                   <a
                     href="#"
                     className="font-semibold text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot password?
                   </a>
-                </div>
+                </div> */}
               </div>
               <div className="mt-2">
                 <input
