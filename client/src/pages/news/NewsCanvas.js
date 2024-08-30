@@ -11,9 +11,7 @@ const News = () => {
   //getallNews
   const getAllNews = async () => {
     try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/news/get-news`
-      );
+      const { data } = await axios.get(`/api/v1/news/get-news`);
       setNews(data.news);
     } catch (error) {
       console.log(error);
@@ -37,7 +35,7 @@ const News = () => {
               >
                 <div className="newsdata-tiles-img">
                   <img
-                    src={`${process.env.REACT_APP_API}/api/v1/news/news-photo/${e._id}`}
+                    src={`/api/v1/news/news-photo/${e._id}`}
                     alt={e.title}
                     height="100%"
                     width="100%"

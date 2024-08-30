@@ -25,15 +25,9 @@ router.get("/user-auth", requireSignIn, (req, res) => {
 });
 
 //admin
-router.get(
-  "/admin-auth",
-  requireSignIn,
-
-  isAdmin,
-  (req, res) => {
-    res.status(200).send({ ok: true });
-  }
-);
+router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
+  res.status(200).send({ ok: true });
+});
 
 //FogotPassword
 router.post("/forgot-password", forgotPasswordController);

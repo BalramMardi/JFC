@@ -16,9 +16,7 @@ const NewsDetails = () => {
 
   const getNews = async () => {
     try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/news/get-news/${params?.slug}`
-      );
+      const { data } = await axios.get(`/api/v1/news/get-news/${params?.slug}`);
       setNews(data?.news);
     } catch (error) {
       console.log(error);
@@ -32,7 +30,7 @@ const NewsDetails = () => {
           <div className="news-img1">
             {news._id && (
               <img
-                src={`${process.env.REACT_APP_API}/api/v1/news/news-photo/${news?._id}`}
+                src={`/api/v1/news/news-photo/${news?._id}`}
                 className="card-img-top"
                 alt={news?.title}
                 style={{ filter: "blur(10px)" }}
@@ -43,7 +41,7 @@ const NewsDetails = () => {
           <div className="news-img2">
             {news._id && (
               <img
-                src={`${process.env.REACT_APP_API}/api/v1/news/news-photo/${news?._id}`}
+                src={`/api/v1/news/news-photo/${news?._id}`}
                 className="card-img-top"
                 alt={news?.title}
               />
