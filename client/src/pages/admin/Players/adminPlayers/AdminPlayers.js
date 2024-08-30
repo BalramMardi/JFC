@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import "./adminPlayers.css";
 import axios from "axios";
 import AdminMenu from "../../../AdminMenu";
 const AdminPlayers = () => {
@@ -25,7 +25,7 @@ const AdminPlayers = () => {
   return (
     <div className="createNews-container">
       <AdminMenu />
-      <div className="news-container">
+      <div className="news-container mt-28">
         <div className="news-title">JFC Players</div>
         <div className="news-tiles">
           {players?.map((p) => (

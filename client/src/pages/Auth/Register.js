@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import store from "../../redux/store";
-import { userRegister } from "../../redux/features/Auth/AuthAction";
+
 import FormInput from "./FormInput";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -79,14 +80,43 @@ const Register = () => {
     },
   ];
 
-  const handleSubmit = (e) => {
+  /* const handleSubmit = async (e) => {
     e.preventDefault();
-    /* if (values.password !== values.confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    } */
-    store.dispatch(userRegister(values));
-    navigate("/success");
+    const { name, email, password, phone, answer } = values;
+    const res = await axios.post("auth/register", {
+      name,
+      email,
+      password,
+      phone,
+      answer,
+    });
+    if (res && res.data.success) {
+      toast.success(res.data && res.data.message);
+      navigate("/login");
+    } else {
+      toast.error(res.data.message);
+    }
+  }; */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { name, email, password, phone, answer } = values; // Extract values from state
+    try {
+      const res = await axios.post("api/v1/auth/register", {
+        name,
+        email,
+        password,
+        phone,
+        answer,
+      });
+      if (res && res.data.success) {
+        toast.success(res.data.message);
+        navigate("/login");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      toast.error("Registration failed. Please try again.");
+    }
   };
 
   const onChange = (e) => {

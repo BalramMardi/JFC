@@ -178,7 +178,7 @@ const UpdateMatch = () => {
   return (
     <div className="createNews-container">
       <AdminMenu />
-      <div className="createNews-right">
+      <div className="createNews-right mt-28">
         <form>
           <div className="ml-20">
             <div className="border-b border-gray-900/10 pb-5 mt-10">

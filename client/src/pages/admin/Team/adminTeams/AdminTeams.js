@@ -25,7 +25,7 @@ const AdminTeams = () => {
   return (
     <div className="createNews-container">
       <AdminMenu />
-      <div className="news-container">
+      <div className="news-container mt-28">
         <div className="news-title">Teams</div>
         <div className="news-tiles">
           {teams?.map((p) => (

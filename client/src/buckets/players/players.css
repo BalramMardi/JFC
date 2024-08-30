@@ -207,5 +207,9 @@
 } */
 
 .react-multiple-carousel__arrow--left {
-  left: calc(4% + -32px);
+  left: calc(4% - 32px) !important;
+}
+
+.react-multiple-carousel__arrow {
+  z-index: 10 !important;
 }

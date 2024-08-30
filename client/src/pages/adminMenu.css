@@ -1,7 +1,7 @@
 .dashboard-sidebar {
   width: 300px;
   height: 100%;
-  background-color: #333;
+  background-color: #0c1925;
   color: #fff;
   padding: 20px;
   display: flex;
@@ -22,7 +22,9 @@
 }
 
 .category {
+  text-align: center;
   margin: 0 0 10px;
+  width: 200px;
   cursor: pointer;
   padding: 10px 20px;
   transition: background-color 0.3s;
@@ -31,8 +33,8 @@
 }
 
 .category:hover {
-  background-color: #555;
+  background-color: #6762a0;
 }
 .active {
-  background-color: #555;
+  background-color: #6762a0;
 }

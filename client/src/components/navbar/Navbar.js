@@ -5,37 +5,23 @@ import tfa from "../../img/logo/tfa.png";
 import jfcBW from "../../img/logo/jfcBW.png";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../../services/API";
-import { useDispatch, useSelector } from "react-redux";
-import { getCurrentUser } from "../../redux/features/Auth/AuthAction";
+import { useAuth } from "../../context/auth";
+import toast from "react-hot-toast";
+
 const Navbar = () => {
-  // const { user } = useSelector((state) => state.auth);
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  //get user current
-  const getUser = async () => {
-    try {
-      const { data } = await API.get("/auth/current-user");
-      if (data?.success) {
-        dispatch(getCurrentUser(data));
-      }
-    } catch (error) {
-      localStorage.clear();
-      console.log(error);
-    }
+
+  const handleLogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("auth");
+    localStorage.removeItem("token");
+    toast.success("Logout Successfully");
   };
-
-  const handleLogout = (e) => {
-    e.preventDefault();
-    localStorage.clear();
-    navigate("/login");
-  };
-
-  useEffect(() => {
-    getCurrentUser();
-    getUser();
-  }, []);
-
-  const user = useSelector((state) => state.auth.user);
 
   return (
     <div className="bg-[#242555] bg-gradient-to-r from-indigo-500 h-[50px] w-[100%] flex justify-around items-center fixed font-bold z-50 top-0">
@@ -49,13 +35,13 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex justify-between text-[0.80rem] text-cyan-50 gap-3 absolute right-4 items-center">
-        {user ? (
+        {auth?.user ? (
           <div className="flex gap-2 items-center hover:cursor-pointer">
             <AiOutlineUser
               size={30}
               style={{ backgroundColor: "#154284", borderRadius: "50%" }}
             />
-            <div className="rounded-lg">{user.name}</div>
+            <div className="rounded-lg"> {auth?.user?.name}</div>
           </div>
         ) : (
           <div
@@ -69,7 +55,7 @@ const Navbar = () => {
             <div className="rounded-lg">Login</div>
           </div>
         )}
-        {user ? (
+        {auth?.user ? (
           <div
             onClick={handleLogout}
             className="flex gap-2 items-center justify-center hover:cursor-pointer  p-1 m-2 bg-gradient-to-r from-red-800 to-red-700  rounded-md s shadow-lg shadow-cyan-50/10  hover:animate-pulse text-[0.80rem] w-[7.6rem] h-11"

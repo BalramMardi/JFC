@@ -5,9 +5,9 @@ import { NavLink } from "react-router-dom";
 
 const NewsScreen = () => {
   return (
-    <div className="newsScreen-container">
+    <div className="newsScreen-container ">
       <AdminMenu />
-      <div className="newsScreen-container-right">
+      <div className="newsScreen-container-right mt-28">
         <NavLink
           className="newsScreen-container-box"
           to="/admin/news/create-news"

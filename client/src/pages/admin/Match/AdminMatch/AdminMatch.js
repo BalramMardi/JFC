@@ -55,7 +55,7 @@ const AdminMatch = () => {
   return (
     <div className="createNews-container">
       <AdminMenu />
-      <div className="createNews-right">
+      <div className="createNews-right mt-28">
         <div className="schedule-bucket">
           <div className="schedule-container">
             <h1>First Team Schedule</h1>
@@ -88,7 +88,6 @@ const AdminMatch = () => {
                   </div>
                   <div className="sctypeadmin">
                     <img
-                      
                       src={
                         leagueUsed
                           ? `${process.env.REACT_APP_API}/api/v1/league/league-photo/${leagueUsed._id}`

@@ -22,12 +22,10 @@ export const requireSignIn = async (req, res, next) => {
         });
       } else {
         req.body.userId = decode.userId;
+        // req.user = decode;
         next();
       }
     });
-
-    /*  req.user = decode;
-    next(); */
   } catch (error) {
     console.log(error);
   }
@@ -36,8 +34,11 @@ export const requireSignIn = async (req, res, next) => {
 //admin access
 export const isAdmin = async (req, res, next) => {
   try {
-    const user = await UserModel.findById(req.user._id);
-    if (user.role !== 1) {
+    const user = await UserModel.findById(req.body.userId);
+    console.log(user?._id);
+    console.log(user?.role);
+
+    if (user?.role !== 1) {
       return res.status(401).send({
         success: false,
         message: "UnAuthorized access",

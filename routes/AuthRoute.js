@@ -17,7 +17,23 @@ router.post("/register", registerController);
 router.post("/login", loginController);
 
 //User
-router.get("/current-user", requireSignIn, getCurrentUser);
+router.get("/current-user", requireSignIn, getCurrentUser, isAdmin);
+
+//protectedUser
+router.get("/user-auth", requireSignIn, (req, res) => {
+  res.status(200).send({ ok: true });
+});
+
+//admin
+router.get(
+  "/admin-auth",
+  requireSignIn,
+
+  isAdmin,
+  (req, res) => {
+    res.status(200).send({ ok: true });
+  }
+);
 
 //FogotPassword
 router.post("/forgot-password", forgotPasswordController);

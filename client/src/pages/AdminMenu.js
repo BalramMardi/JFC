@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const AdminMenu = () => {
   return (
     <div>
-      <div className="dashboard-sidebar">
+      <div className="dashboard-sidebar mt-28">
         <h1 className="dashboard-title">My Dashboard</h1>
         <ul className="category-list">
           <NavLink

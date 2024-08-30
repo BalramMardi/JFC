@@ -8,48 +8,14 @@ import NewsDetails from "./pages/news/NewsDetails";
 import ScrollToTop from "./components/ScrollToTop";
 import { Toaster } from "react-hot-toast";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
-import PublicRoute from "./components/routes/PublicRoute";
-import ProtectedRoute from "./components/routes/ProtectedRoute";
 import TicketPage from "./pages/tickets/TicketPage";
 import TicketStands from "./pages/tickets/TicketStands";
 import AllTicket from "./pages/tickets/AllTicket";
 
 import Redirect from "./components/routes/Redirect";
 import Layout from "./layout/Layout";
-// import VideoSection from "./pages/video/VideoSection";
+import AdminRoute from "./components/routes/AdminRoute";
 
-// import CreateNews from "./pages/admin/News/createNews/CreateNews";
-// import NewsScreen from "./pages/admin/News/NewsOption/NewsScreen";
-// import UpdateNews from "./pages/admin/News/updateNews/UpdateNews";
-// import AdminNews from "./pages/admin/News/AdminNews/AdminNews";
-
-// import TnCpage from "./components/footer/TnCpage";
-// import PrivacyPolicy from "./components/footer/PrivacyPolicy";
-// import AboutUs from "./components/footer/Aboutus";
-// import CreatePlayers from "./pages/admin/Players/createPlayers/CreatePlayers";
-// import PlayersOption from "./pages/admin/Players/playersOption/PlayersOption";
-// import AdminPlayers from "./pages/admin/Players/adminPlayers/AdminPlayers";
-// import UpdatePlayers from "./pages/admin/Players/updatePlayers/UpdatePlayers";
-
-/* import TeamsOption from "./pages/admin/Team/teamsOption/TeamsOption";
-import CreateTeams from "./pages/admin/Team/createTeams/CreateTeams";
-import AdminTeams from "./pages/admin/Team/adminTeams/AdminTeams";
-import UpdateTeams from "./pages/admin/Team/updateTeams/UpdateTeams"; */
-
-/* import MatchOption from "./pages/admin/Match/MatchOption/MatchOption";
-import CreateMatch from "./pages/admin/Match/CreateMatch/CreateMatch";
-import AdminMatch from "./pages/admin/Match/AdminMatch/AdminMatch";
-import UpdateMatch from "./pages/admin/Match/UpdateMatch/UpdateMatch"; */
-
-/* import Result from "./pages/result/Result";
-import Register from "./pages/Auth/Register";
-import Login from "./pages/Auth/Login";
-import Standings from "./pages/Standings/Standings";
-import AllPlayers from "./pages/AllPlayers/AllPlayers"; 
-import Schedule from "./pages/schedule/Schedule";
-import Dashboard from "./pages/admin/dashboard/Dashboard";
-
-*/
 const Dashboard = React.lazy(() => import("./pages/admin/dashboard/Dashboard"));
 
 const TnCpage = React.lazy(() => import("./components/footer/TnCpage"));
@@ -203,11 +169,9 @@ function App() {
           <Route
             path="/login"
             element={
-              <PublicRoute>
-                <React.Suspense fallback="Loading...">
-                  <Login />
-                </React.Suspense>
-              </PublicRoute>
+              <React.Suspense fallback="Loading...">
+                <Login />
+              </React.Suspense>
             }
           />
 
@@ -224,14 +188,13 @@ function App() {
           <Route
             path="/admin"
             element={
-              <ProtectedRoute>
-                <React.Suspense fallback="Loading...">
-                  <Dashboard />
-                </React.Suspense>
-              </ProtectedRoute>
+              <React.Suspense fallback="Loading...">
+                <AdminRoute />
+              </React.Suspense>
             }
           >
             <Route path="news" element={<NewsScreen />}></Route>
+
             <Route path="news/create-news" element={<CreateNews />} />
             <Route path="news/admin-news" element={<AdminNews />} />
             <Route path="news/admin-news/:slug" element={<UpdateNews />} />

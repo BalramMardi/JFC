@@ -50,7 +50,7 @@ const CreateTeams = () => {
   return (
     <div className="createNews-container">
       <AdminMenu />
-      <div className="createNews-right">
+      <div className="createNews-right mt-28">
         <form className="ml-10">
           <div className="space-y-12">
             <div className="border-b border-gray-900/10 pb-12">

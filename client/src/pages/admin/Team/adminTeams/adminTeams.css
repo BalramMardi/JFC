@@ -201,12 +201,3 @@
 .teams-extra-assist-number {
   font-size: 30px;
 }
-
-/* .react-multi-carousel-track li {
-    width: 400px !important;
-    margin: 0 20px !important;
-  } */
-
-.react-multiple-carousel__arrow--left {
-  left: calc(4% + -32px);
-}

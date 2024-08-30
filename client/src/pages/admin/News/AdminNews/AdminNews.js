@@ -28,7 +28,7 @@ const AdminNews = () => {
   return (
     <div className="createNews-container">
       <AdminMenu />
-      <div className="news-container">
+      <div className="news-container mt-28">
         <div className="news-title">JFC News</div>
         <div className="news-tiles">
           {news?.map((e, key) => {
