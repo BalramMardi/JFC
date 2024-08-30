@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { API, useAuth } from "../../context/auth";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Redirect from "./Redirect";
 
 export default function AdminRoute() {
