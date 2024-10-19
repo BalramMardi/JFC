@@ -11,10 +11,12 @@ import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import TicketPage from "./pages/tickets/TicketPage";
 import TicketStands from "./pages/tickets/TicketStands";
 import AllTicket from "./pages/tickets/AllTicket";
+import Standings from "./pages/Standings/Standings";
 
 import Redirect from "./components/routes/Redirect";
 import Layout from "./layout/Layout";
 import AdminRoute from "./components/routes/AdminRoute";
+import Spinner from "./components/Spinner";
 
 const Dashboard = React.lazy(() => import("./pages/admin/dashboard/Dashboard"));
 
@@ -27,7 +29,7 @@ const PrivacyPolicy = React.lazy(() =>
 const Result = React.lazy(() => import("./pages/result/Result"));
 const Register = React.lazy(() => import("./pages/Auth/Register"));
 const Login = React.lazy(() => import("./pages/Auth/Login"));
-const Standings = React.lazy(() => import("./pages/Standings/Standings"));
+
 const AllPlayers = React.lazy(() => import("./pages/AllPlayers/AllPlayers"));
 const Schedule = React.lazy(() => import("./pages/schedule/Schedule"));
 
@@ -125,7 +127,7 @@ function App() {
           <Route
             path="/schedule"
             element={
-              <React.Suspense fallback="Loading...">
+              <React.Suspense fallback={<Spinner />}>
                 <Schedule />
               </React.Suspense>
             }
@@ -133,23 +135,16 @@ function App() {
           <Route
             path="/videos"
             element={
-              <React.Suspense fallback="Loading...">
+              <React.Suspense fallback={<Spinner />}>
                 <VideoSection />
               </React.Suspense>
             }
           />
-          <Route
-            path="/standings"
-            element={
-              <React.Suspense fallback="Loading...">
-                <Standings />
-              </React.Suspense>
-            }
-          />
+          <Route path="/standings" element={<Standings />} />
           <Route
             path="/players"
             element={
-              <React.Suspense fallback="Loading...">
+              <React.Suspense fallback={<Spinner />}>
                 <AllPlayers />
               </React.Suspense>
             }
@@ -178,12 +173,14 @@ function App() {
           <Route
             path="/result"
             element={
-              <React.Suspense fallback="Loading...">
+              <React.Suspense fallback={<Spinner />}>
                 <Result />
               </React.Suspense>
             }
           />
           <Route path="/pagenotfound" element={<PageNotFound />} />
+
+          <Route path="/spinner" element={<Spinner />} />
 
           <Route
             path="/admin"
@@ -228,41 +225,3 @@ function App() {
 }
 
 export default App;
-
-{
-  /* <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="/admin/news" element={<NewsScreen />}></Route>
-          <Route path="/admin/news/create-news" element={<CreateNews />} />
-          <Route path="/admin/news/admin-news" element={<AdminNews />} />
-          <Route path="admin/news/admin-news/:slug" element={<UpdateNews />} />
-
-          <Route path="/admin/player" element={<PlayersOption />}></Route>
-          <Route
-            path="/admin/player/create-players"
-            element={<CreatePlayers />}
-          />
-          <Route path="admin/player/admin-players" element={<AdminPlayers />} />
-          <Route
-            path="admin/player/admin-players/:slug"
-            element={<UpdatePlayers />}
-          />
-          <Route path="/admin/teams" element={<TeamsOption />}></Route>
-          <Route path="/admin/teams/create-teams" element={<CreateTeams />} />
-          <Route path="admin/teams/admin-teams" element={<AdminTeams />} />
-          <Route
-            path="admin/teams/admin-teams/:slug"
-            element={<UpdateTeams />}
-          />
-
-          <Route path="admin/matches" element={<MatchOption />} />
-          <Route
-            path="/admin/matches/create-matches"
-            element={<CreateMatch />}
-          />
-          <Route path="/admin/matches/admin-matches" element={<AdminMatch />} />
-          <Route
-            path="/admin/matches/admin-matches/:slug"
-            element={<UpdateMatch />}
-          />
-        </Route> */
-}

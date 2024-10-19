@@ -12,7 +12,7 @@ const Topbar = () => {
       <div onClick={() => navigate("/schedule")}>Schedule</div>
 
       <div onClick={() => navigate("/result")}>Results</div>
-      <div onClick={() => navigate("/players")}>Players</div>
+      <div onClick={() => navigate("/players")}>Squad</div>
       <div onClick={() => navigate("/ticket")}>Tickets</div>
       <div onClick={() => navigate("/videos")}>Videos</div>
 

@@ -55,7 +55,8 @@ const AllTicket = () => {
     getAllLeague();
   }, []);
 
-  const matchDone = match.filter((m) => m.done).length + 1;
+  const matchDone = match.filter((m) => m.done).length;
+  var tgnewVar = 459 + matchDone; //463
 
   return (
     <div>
@@ -81,7 +82,10 @@ const AllTicket = () => {
                   (lea) => lea._id === c.league
                 );
 
-                const sum = index + matchDone + tgVar; //to calculate ticketgine constant
+                {
+                  /* const sum = index + matchDone + tgVar;  */
+                }
+                const sum = index + tgnewVar;
 
                 return (
                   <div key={c._id} className="schedule-slate">
@@ -213,9 +217,8 @@ const AllTicket = () => {
                       // onClick={() => {
                       //   navigate(`/ticket/match/${c.slug}`);
                       // }}
-                      to={`https://in.ticketgenie.in/SelectStand/jamshedpur-fc-matches-2023-24/${encodeURIComponent(
-                        sum
-                      )}`}
+                      // to={`https://in.ticketgenie.in/SelectStand/jamshedpur-fc-matches-2023-24/${encodeURIComponent(sum)}`}
+                      to={`https://in.ticketgenie.in/SelectStand/Jamshedpur-FC-Home-Games-2024-25/${sum}#!`}
                       target="_blank"
                     >
                       <div className="scticket-info">TICKET</div>

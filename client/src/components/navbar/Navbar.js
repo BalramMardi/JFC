@@ -30,7 +30,7 @@ const Navbar = () => {
         onClick={() => navigate("/ticket")}
       >
         <div className="flex justify-center gap-2 items-center text-cyan-50 w-[31rem] h-8 rounded-2xl p-1 m-1 bg-gradient-to-r from-blue-800 to-gray-800 text-center text-[0.8rem] hover:cursor-pointer ">
-          The season is about to begin ⚽
+          The season has started ⚽
           <span style={{ color: "orange" }}> BUY YOUR TICKET NOW!</span>
         </div>
       </div>
